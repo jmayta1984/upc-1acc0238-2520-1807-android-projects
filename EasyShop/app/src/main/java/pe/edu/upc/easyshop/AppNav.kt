@@ -17,13 +17,13 @@ fun AppNav() {
         composable(Route.Login.route)
         {
             Login {
-                navController.navigate(Route.Home.route)
+                navController.navigate(Route.Main.route)
             }
 
         }
 
-        composable(Route.Home.route) {
-            Home()
+        composable(Route.Main.route) {
+            Main()
         }
 
 
@@ -40,7 +40,7 @@ fun AppNavPreview() {
 
 
 sealed class Route(val route: String){
-    object Home: Route("home")
+    object Main: Route("main")
     object Login: Route("login")
 
 }
