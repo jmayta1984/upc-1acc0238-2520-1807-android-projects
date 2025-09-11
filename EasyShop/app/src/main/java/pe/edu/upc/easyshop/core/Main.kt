@@ -1,4 +1,4 @@
-package pe.edu.upc.easyshop
+package pe.edu.upc.easyshop.core
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -18,7 +18,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
-import pe.edu.upc.easyshop.ui.theme.EasyShopTheme
+import pe.edu.upc.easyshop.core.theme.EasyShopTheme
+import pe.edu.upc.easyshop.features.home.presentation.Home
 
 
 data class NavigationItem(

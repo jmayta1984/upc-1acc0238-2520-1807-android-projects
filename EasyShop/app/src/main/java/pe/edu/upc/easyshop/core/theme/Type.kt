@@ -1,4 +1,4 @@
-package pe.edu.upc.easyshop.ui.theme
+package pe.edu.upc.easyshop.core.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

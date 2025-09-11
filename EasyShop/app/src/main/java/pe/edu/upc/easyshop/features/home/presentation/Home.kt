@@ -1,4 +1,4 @@
-package pe.edu.upc.easyshop
+package pe.edu.upc.easyshop.features.home.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -15,6 +15,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -37,13 +40,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import pe.edu.upc.easyshop.ui.theme.EasyShopTheme
+import pe.edu.upc.easyshop.R
+import pe.edu.upc.easyshop.common.ui.ProductCard
+import pe.edu.upc.easyshop.common.ui.RoundedIcon
+import pe.edu.upc.easyshop.core.theme.EasyShopTheme
+import pe.edu.upc.easyshop.shared.model.products
 
 @Composable
 fun Home() {
@@ -203,28 +209,30 @@ fun Home() {
                 )
             }
         }
+
+        Row(
+            modifier = Modifier
+                .height(64.dp)
+                .padding(horizontal = 8.dp)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(
+                "Popular",
+                style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.weight(1f)
+            )
+            TextButton(onClick = {}) { Text("See all") }
+        }
+
+        LazyVerticalGrid(columns = GridCells.Fixed(2)) {
+            items(products) { product ->
+                ProductCard(product)
+            }
+        }
     }
 }
 
-@Composable
-fun RoundedIcon(icon: ImageVector) {
-    Box(
-        modifier = Modifier
-            .size(48.dp)
-            .clip(RoundedCornerShape(16.dp))
-            .background(
-                MaterialTheme.colorScheme.inverseOnSurface
-            )
-    ) {
-        Icon(
-            icon,
-            contentDescription = null,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(12.dp)
-        )
-    }
-}
 
 sealed class Category(val label: String) {
     object All : Category("All")
