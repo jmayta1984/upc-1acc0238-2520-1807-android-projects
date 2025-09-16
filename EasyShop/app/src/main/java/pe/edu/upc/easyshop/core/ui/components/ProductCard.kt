@@ -5,6 +5,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,12 +25,13 @@ import pe.edu.upc.easyshop.shared.model.products
 
 @Composable
 fun ProductCard(
-    product: Product
-
+    product: Product,
+    onClick: () -> Unit
 ) {
     Card(
         modifier = Modifier
-            .padding(8.dp)
+            .padding(8.dp),
+        onClick = onClick
     ) {
         Box(
             modifier = Modifier
@@ -54,6 +58,10 @@ fun ProductCard(
 @Composable
 fun ProductCardPreview() {
     EasyShopTheme {
-        ProductCard(products[0])
+        LazyVerticalGrid(columns = GridCells.Fixed(2)) {
+            items(products) { product ->
+                ProductCard(product) {}
+            }
+        }
     }
 }

@@ -28,7 +28,7 @@ data class NavigationItem(
 )
 
 @Composable
-fun Main() {
+fun Main(onClick: () -> Unit) {
 
     val selectedTab = remember {
         mutableStateOf(0)
@@ -63,7 +63,7 @@ fun Main() {
         }
     ) {
         Column(modifier = Modifier.padding(it)) {
-            Home()
+            Home(onClick)
         }
     }
 }
@@ -72,6 +72,6 @@ fun Main() {
 @Composable
 fun MainPreview() {
     EasyShopTheme {
-        Main()
+        Main{}
     }
 }

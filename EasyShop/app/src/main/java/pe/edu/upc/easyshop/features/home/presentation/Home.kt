@@ -53,7 +53,7 @@ import pe.edu.upc.easyshop.core.ui.theme.EasyShopTheme
 import pe.edu.upc.easyshop.shared.model.products
 
 @Composable
-fun Home() {
+fun Home(onClick: () -> Unit) {
 
     val categories = listOf(
         Category.All,
@@ -228,7 +228,7 @@ fun Home() {
 
         LazyVerticalGrid(columns = GridCells.Fixed(2)) {
             items(products) { product ->
-                ProductCard(product)
+                ProductCard(product, onClick)
             }
         }
     }
@@ -247,6 +247,6 @@ sealed class Category(val label: String) {
 @Composable
 fun HomePreview() {
     EasyShopTheme {
-        Home()
+        Home{}
     }
 }
