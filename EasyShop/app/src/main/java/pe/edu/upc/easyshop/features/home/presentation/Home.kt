@@ -42,13 +42,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pe.edu.upc.easyshop.R
-import pe.edu.upc.easyshop.common.ui.ProductCard
-import pe.edu.upc.easyshop.common.ui.RoundedIcon
-import pe.edu.upc.easyshop.core.theme.EasyShopTheme
+import pe.edu.upc.easyshop.core.ui.components.ProductCard
+import pe.edu.upc.easyshop.core.ui.components.RoundedIcon
+import pe.edu.upc.easyshop.core.ui.theme.EasyShopTheme
 import pe.edu.upc.easyshop.shared.model.products
 
 @Composable
@@ -124,7 +125,7 @@ fun Home() {
             OutlinedTextField(
                 value = "", onValueChange = {},
                 modifier = Modifier.weight(1f),
-                placeholder = { Text("Search") },
+                placeholder = { Text(stringResource(R.string.placeholder_search)) },
                 leadingIcon = {
                     Icon(
                         Icons.Default.Search,
@@ -144,11 +145,11 @@ fun Home() {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                "Categories",
+                stringResource(R.string.label_categories),
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.weight(1f)
             )
-            TextButton(onClick = {}) { Text("See all") }
+            TextButton(onClick = {}) { Text(stringResource(R.string.button_see_all)) }
         }
 
         LazyRow {
@@ -218,7 +219,7 @@ fun Home() {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                "Popular",
+                stringResource(R.string.label_products),
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.weight(1f)
             )
