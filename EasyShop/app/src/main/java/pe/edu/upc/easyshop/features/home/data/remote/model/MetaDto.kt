@@ -1,4 +1,4 @@
-package pe.edu.upc.easyshop.features.home.data.remote.models
+package pe.edu.upc.easyshop.features.home.data.remote.model
 
 data class MetaDto(
     val barcode: String?,

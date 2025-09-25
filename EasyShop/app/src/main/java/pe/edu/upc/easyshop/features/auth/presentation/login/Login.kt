@@ -1,4 +1,4 @@
-package pe.edu.upc.easyshop.features.auth.presentation
+package pe.edu.upc.easyshop.features.auth.presentation.login
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -6,8 +6,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
@@ -16,10 +16,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -28,46 +25,43 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pe.edu.upc.easyshop.R
 import pe.edu.upc.easyshop.core.ui.theme.EasyShopTheme
+import pe.edu.upc.easyshop.features.auth.presentation.di.PresentationModule.getLoginViewModel
 
 @Composable
-fun Login(onSubmit: () -> Unit ) {
+fun Login(
+    viewModel: LoginViewModel,
+    onSubmit: () -> Unit
+) {
 
-    val email = remember {
-        mutableStateOf("")
-    }
-
-    var password by remember {
-        mutableStateOf("")
-    }
-
-    val isVisible = remember {
-        mutableStateOf(false)
-    }
+    val username = viewModel.username.collectAsState()
+    val password = viewModel.password.collectAsState()
+    val isVisible = viewModel.isVisible.collectAsState()
+    val user = viewModel.user.collectAsState()
 
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center
     ) {
         OutlinedTextField(
-            value = email.value,
+            value = username.value,
             onValueChange = {
-                email.value = it
+                viewModel.updateUsername(it)
             },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp),
             leadingIcon = {
-                Icon(Icons.Default.Email, contentDescription = null)
+                Icon(Icons.Default.Person, contentDescription = null)
             },
             placeholder = {
-                Text(stringResource(R.string.placeholder_email))
+                Text(stringResource(R.string.placeholder_username))
             }
         )
 
         OutlinedTextField(
-            value = password,
+            value = password.value,
             onValueChange = {
-                password = it
+                viewModel.updatePassword(it)
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -89,7 +83,7 @@ fun Login(onSubmit: () -> Unit ) {
             trailingIcon = {
                 IconButton(
                     onClick = {
-                        isVisible.value = !isVisible.value
+                        viewModel.toggleVisible()
                     }
                 ) {
                     Icon(
@@ -105,19 +99,27 @@ fun Login(onSubmit: () -> Unit ) {
         )
 
         Button(
-            onClick = onSubmit,
-            modifier = Modifier.fillMaxWidth().padding(8.dp)
+            onClick = { viewModel.login() },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
         ) {
             Text(text = "Login")
         }
+
+        user.value?.let {
+            Text(it.name)
+        }
+
     }
 }
 
 @Preview
 @Composable
 fun LoginPreview() {
+    val viewModel: LoginViewModel = getLoginViewModel()
     EasyShopTheme {
-        Login {
+        Login(viewModel) {
 
         }
     }

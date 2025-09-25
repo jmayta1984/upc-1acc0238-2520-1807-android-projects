@@ -3,7 +3,7 @@
     <string name="label_categories">Categories</string>
     <string name="label_products">Products</string>
     <string name="placeholder_search">Search</string>
-    <string name="placeholder_email">Email</string>
+    <string name="placeholder_username">Username</string>
     <string name="placeholder_password">Password</string>
     <string name="button_see_all">See all</string>
 </resources>

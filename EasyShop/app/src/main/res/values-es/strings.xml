@@ -4,7 +4,7 @@
     <string name="label_categories">Categorías</string>
     <string name="label_products">Productos</string>
     <string name="placeholder_search">Buscar</string>
-    <string name="placeholder_email">Correo</string>
+    <string name="placeholder_username">Usuario</string>
     <string name="placeholder_password">Contraseña</string>
     <string name="button_see_all">Mostrar todos</string>
 </resources>
