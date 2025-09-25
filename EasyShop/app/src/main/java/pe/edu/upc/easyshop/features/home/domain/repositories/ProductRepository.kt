@@ -5,4 +5,6 @@ import pe.edu.upc.easyshop.shared.model.Product
 interface ProductRepository {
 
     suspend fun getAllProducts(): List<Product>
+
+    suspend fun saveProduct(product: Product)
 }
