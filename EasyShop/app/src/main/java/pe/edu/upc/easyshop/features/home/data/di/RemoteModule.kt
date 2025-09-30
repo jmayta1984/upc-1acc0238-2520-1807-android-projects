@@ -15,21 +15,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object RemoteModule {
 
-    @Provides
-    @Singleton
-    @Named("url")
-    fun provideApiBaseUrl(): String {
-        return "https://dummyjson.com/"
-    }
-
-    @Provides
-    @Singleton
-    fun provideRetrofit(@Named("url") url: String): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(url)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
 
     @Provides
     @Singleton

@@ -1,4 +1,4 @@
-package pe.edu.upc.easyshop.features.home.presentation.views
+package pe.edu.upc.easyshop.features.home.presentation.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -50,10 +50,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import pe.edu.upc.easyshop.R
-import pe.edu.upc.easyshop.core.ui.components.ProductCard
 import pe.edu.upc.easyshop.core.ui.components.RoundedIcon
 import pe.edu.upc.easyshop.core.ui.theme.EasyShopTheme
-import pe.edu.upc.easyshop.features.home.presentation.viewmodels.HomeViewModel
 
 @Composable
 fun Home(

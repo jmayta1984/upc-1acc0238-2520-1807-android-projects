@@ -23,13 +23,13 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import pe.edu.upc.easyshop.R
 import pe.edu.upc.easyshop.core.ui.theme.EasyShopTheme
-import pe.edu.upc.easyshop.features.auth.presentation.di.PresentationModule.getLoginViewModel
 
 @Composable
 fun Login(
-    viewModel: LoginViewModel,
+    viewModel: LoginViewModel = hiltViewModel(),
     onSubmit: () -> Unit
 ) {
 
@@ -117,11 +117,8 @@ fun Login(
 @Preview
 @Composable
 fun LoginPreview() {
-    val viewModel: LoginViewModel = getLoginViewModel()
     EasyShopTheme {
-        Login(viewModel) {
-
-        }
+        Login {}
     }
 
 }

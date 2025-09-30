@@ -2,11 +2,11 @@ package pe.edu.upc.easyshop.core
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import pe.edu.upc.easyshop.core.ui.theme.EasyShopTheme
-import pe.edu.upc.easyshop.features.auth.presentation.di.PresentationModule.getLoginViewModel
 import pe.edu.upc.easyshop.features.auth.presentation.login.Login
 import pe.edu.upc.easyshop.features.auth.presentation.login.LoginViewModel
 
@@ -14,7 +14,7 @@ import pe.edu.upc.easyshop.features.auth.presentation.login.LoginViewModel
 fun AppNav() {
 
     val navController = rememberNavController()
-    val viewModel: LoginViewModel = getLoginViewModel()
+    val viewModel: LoginViewModel = hiltViewModel()
     NavHost(navController, startDestination = Route.Login.route) {
 
         composable(Route.Login.route)

@@ -1,4 +1,4 @@
-package pe.edu.upc.easyshop.core.ui.components
+package pe.edu.upc.easyshop.features.home.presentation.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
