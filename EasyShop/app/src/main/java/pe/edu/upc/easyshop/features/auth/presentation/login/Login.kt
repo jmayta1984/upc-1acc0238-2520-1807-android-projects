@@ -99,7 +99,10 @@ fun Login(
         )
 
         Button(
-            onClick = { viewModel.login() },
+            onClick = {
+                viewModel.login()
+                onSubmit()
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)

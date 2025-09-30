@@ -28,9 +28,6 @@ class ProductRepositoryImpl @Inject constructor(
                             image = productDto.thumbnail ?: ""
                         )
                     }
-                    products.forEach { product ->
-                        saveProduct(product)
-                    }
                     return@withContext products
                 }
             }
@@ -49,6 +46,22 @@ class ProductRepositoryImpl @Inject constructor(
             )
         )
 
+    }
+
+    override suspend fun getProductById(id: Int): Product? = withContext(Dispatchers.IO) {
+        val response = service.getProductById(id)
+        if (response.isSuccessful) {
+            response.body()?.let { productDto ->
+                return@withContext Product(
+                    id = productDto.id ?: 0,
+                    price = productDto.price ?: 0.0,
+                    image = productDto.thumbnail ?: "",
+                    name = productDto.title ?: ""
+                )
+            }
+        }
+
+        return@withContext null
     }
 
 }

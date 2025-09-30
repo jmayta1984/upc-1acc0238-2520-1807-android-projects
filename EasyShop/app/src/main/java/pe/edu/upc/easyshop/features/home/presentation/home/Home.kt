@@ -56,7 +56,7 @@ import pe.edu.upc.easyshop.core.ui.theme.EasyShopTheme
 @Composable
 fun Home(
     viewModel: HomeViewModel = hiltViewModel(),
-    onClick: () -> Unit
+    onClick: (Int) -> Unit
 ) {
 
     val categories = listOf(
@@ -234,7 +234,9 @@ fun Home(
 
         LazyVerticalGrid(columns = GridCells.Fixed(2)) {
             items(products) { product ->
-                ProductCard(product, onClick)
+                ProductCard(product) {
+                    onClick(product.id)
+                }
             }
         }
     }

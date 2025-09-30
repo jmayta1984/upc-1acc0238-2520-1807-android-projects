@@ -28,7 +28,7 @@ data class NavigationItem(
 )
 
 @Composable
-fun Main(onClick: () -> Unit) {
+fun Main(onClick: (Int) -> Unit) {
 
     val selectedTab = remember {
         mutableStateOf(0)
