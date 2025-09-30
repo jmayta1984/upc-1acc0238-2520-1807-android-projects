@@ -19,7 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import pe.edu.upc.easyshop.core.ui.theme.EasyShopTheme
-import pe.edu.upc.easyshop.features.home.presentation.di.PresentationModule.getHomeViewModel
 import pe.edu.upc.easyshop.features.home.presentation.views.Home
 
 
@@ -46,25 +45,25 @@ fun Main(onClick: () -> Unit) {
     Scaffold(
         bottomBar = {
             BottomAppBar {
-               navigationItems.forEachIndexed { index, item ->
-                   NavigationBarItem(
-                       selected = index == selectedTab.value,
-                       icon = {
-                           Icon(item.icon, contentDescription = null)
-                       },
-                       label = {
-                           Text(text = item.route)
-                       },
-                       onClick = {
-                           selectedTab.value = index
-                       }
-                   )
-               }
+                navigationItems.forEachIndexed { index, item ->
+                    NavigationBarItem(
+                        selected = index == selectedTab.value,
+                        icon = {
+                            Icon(item.icon, contentDescription = null)
+                        },
+                        label = {
+                            Text(text = item.route)
+                        },
+                        onClick = {
+                            selectedTab.value = index
+                        }
+                    )
+                }
             }
         }
     ) {
         Column(modifier = Modifier.padding(it)) {
-            Home(getHomeViewModel(),onClick)
+            Home(onClick = onClick)
         }
     }
 }
@@ -73,6 +72,6 @@ fun Main(onClick: () -> Unit) {
 @Composable
 fun MainPreview() {
     EasyShopTheme {
-        Main{}
+        Main {}
     }
 }

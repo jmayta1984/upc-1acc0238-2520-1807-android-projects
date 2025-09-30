@@ -7,8 +7,9 @@ import pe.edu.upc.easyshop.features.home.data.local.model.ProductEntity
 import pe.edu.upc.easyshop.features.home.data.remote.services.ProductService
 import pe.edu.upc.easyshop.features.home.domain.repositories.ProductRepository
 import pe.edu.upc.easyshop.shared.model.Product
+import javax.inject.Inject
 
-class ProductRepositoryImpl(
+class ProductRepositoryImpl @Inject constructor(
     private val service: ProductService,
     private val dao: ProductDao
 ) : ProductRepository {

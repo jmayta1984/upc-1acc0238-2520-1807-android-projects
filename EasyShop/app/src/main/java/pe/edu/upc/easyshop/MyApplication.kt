@@ -1,16 +1,7 @@
 package pe.edu.upc.easyshop
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-class MyApplication: Application() {
-    companion object {
-        lateinit var INSTANCE: MyApplication
-
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-        INSTANCE = this
-
-    }
-}
+@HiltAndroidApp
+class MyApplication : Application()
