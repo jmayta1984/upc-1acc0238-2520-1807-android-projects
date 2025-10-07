@@ -49,4 +49,16 @@ class MovieRepositoryImpl @Inject constructor(
     override suspend fun removeFavorite(id: Int) = withContext(Dispatchers.IO) {
         dao.delete(id)
     }
+
+    override suspend fun getAllFavorites(): List<Movie> = withContext(Dispatchers.IO) {
+        return@withContext dao.getAllFavorites().map { movieEntity ->
+            Movie(
+                id = movieEntity.id,
+                title = movieEntity.title,
+                posterPath = movieEntity.posterPath,
+                overview = movieEntity.overview,
+                isFavorite = true
+            )
+        }
+    }
 }
