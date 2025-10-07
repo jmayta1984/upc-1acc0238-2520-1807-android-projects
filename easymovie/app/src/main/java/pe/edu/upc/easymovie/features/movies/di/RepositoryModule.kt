@@ -1,10 +1,11 @@
-package pe.edu.upc.easymovie.domain
+package pe.edu.upc.easymovie.features.movies.di
 
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import pe.edu.upc.easymovie.data.MovieRepositoryImpl
+import pe.edu.upc.easymovie.features.movies.data.repository.MovieRepositoryImpl
+import pe.edu.upc.easymovie.features.movies.domain.repository.MovieRepository
 
 @Module
 @InstallIn(ViewModelComponent::class)

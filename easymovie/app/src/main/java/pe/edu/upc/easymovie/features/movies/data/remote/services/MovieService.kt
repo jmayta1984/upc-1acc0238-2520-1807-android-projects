@@ -1,10 +1,9 @@
-package pe.edu.upc.easymovie.data
+package pe.edu.upc.easymovie.features.movies.data.remote.services
 
+import pe.edu.upc.easymovie.features.movies.data.remote.models.MoviesWrapperDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
-
-
 
 interface MovieService {
 

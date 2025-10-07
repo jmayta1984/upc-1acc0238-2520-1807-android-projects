@@ -1,4 +1,4 @@
-package pe.edu.upc.easymovie.presentation
+package pe.edu.upc.easymovie.features.movies.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,8 +6,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import pe.edu.upc.easymovie.domain.Movie
-import pe.edu.upc.easymovie.domain.MovieRepository
+import pe.edu.upc.easymovie.features.movies.domain.models.Movie
+import pe.edu.upc.easymovie.features.movies.domain.repository.MovieRepository
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,6 +27,23 @@ class SearchMovieViewModel @Inject constructor(private val repository: MovieRepo
     fun searchMovie() {
         viewModelScope.launch {
             _movies.value = repository.searchMovie(_query.value)
+        }
+    }
+
+    fun toggleFavorite(movie: Movie) {
+        viewModelScope.launch {
+            if (movie.isFavorite) {
+                repository.removeFavorite(movie.id)
+            } else {
+                repository.addFavorite(movie)
+            }
+        }
+        _movies.value = _movies.value.map {
+            if (it.id == movie.id) {
+                it.copy(isFavorite = !it.isFavorite)
+            } else {
+                it
+            }
         }
     }
 }
